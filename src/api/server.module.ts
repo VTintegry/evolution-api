@@ -37,6 +37,8 @@ import { TypebotService } from './integrations/chatbot/typebot/services/typebot.
 import { EventManager } from './integrations/event/event.manager';
 import { S3Controller } from './integrations/storage/s3/controllers/s3.controller';
 import { S3Service } from './integrations/storage/s3/services/s3.service';
+import { WebhookReceiverController } from './integrations/webhook-receiver/controllers/webhook-receiver.controller';
+import { WebhookReceiverService } from './integrations/webhook-receiver/services/webhook-receiver.service';
 import { ProviderFiles } from './provider/sessions';
 import { PrismaRepository } from './repository/repository.service';
 import { CacheService } from './services/cache.service';
@@ -137,5 +139,8 @@ export const n8nController = new N8nController(n8nService, prismaRepository, waM
 
 const evoaiService = new EvoaiService(waMonitor, prismaRepository, configService, openaiService);
 export const evoaiController = new EvoaiController(evoaiService, prismaRepository, waMonitor);
+
+const webhookReceiverService = new WebhookReceiverService(prismaRepository);
+export const webhookReceiverController = new WebhookReceiverController(webhookReceiverService);
 
 logger.info('Module - ON');

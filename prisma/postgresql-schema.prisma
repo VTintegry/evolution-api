@@ -761,3 +761,22 @@ model EvoaiSetting {
   Instance        Instance  @relation(fields: [instanceId], references: [id], onDelete: Cascade)
   instanceId      String    @unique
 }
+
+model WhatsappWebhookMessage {
+  id               String   @id @default(cuid())
+  instanceName     String   @db.VarChar(255)
+  event            String   @db.VarChar(100)
+  sender           String?  @db.VarChar(100)
+  recipient        String?  @db.VarChar(100)
+  content          String?  @db.Text
+  messageType      String?  @db.VarChar(100)
+  messageTimestamp Int?     @db.Integer
+  messageId        String?  @db.VarChar(255)
+  rawPayload       Json     @db.JsonB
+  receivedAt       DateTime @default(now()) @db.Timestamp
+
+  @@index([instanceName])
+  @@index([event])
+  @@index([sender])
+  @@index([receivedAt])
+}
