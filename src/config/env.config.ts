@@ -733,7 +733,7 @@ export class ConfigService {
       LOG: {
         LEVEL:
           (process.env?.LOG_LEVEL?.split(',') as LogLevel[]) ||
-          (['ERROR', 'WARN', 'DEBUG', 'INFO', 'LOG', 'VERBOSE', 'DARK', 'WEBHOOKS', 'WEBSOCKET'] as LogLevel[]),
+          (['ERROR', 'WARN', 'INFO', 'LOG'] as LogLevel[]),
         COLOR: process.env?.LOG_COLOR === 'true',
         BAILEYS: (process.env?.LOG_BAILEYS as LogBaileys) || 'error',
       },
